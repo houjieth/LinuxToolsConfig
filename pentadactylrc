@@ -1,0 +1,47 @@
+map K gT
+map <F11> gT
+map <F1> H
+map J gt
+map <F12> gt
+map <F2> L
+
+map s :open<Space>google<Space>
+map v :tabopen<Space>google<Space>
+
+nmap -builtin j 5j
+nmap -builtin k 5k
+nmap -builtin h 5h
+nmap -builtin l 5l
+
+map , <Space>
+map . <S-Space>
+
+map + f 
+map * d 
+
+set hlfind
+set incfind
+
+map -modes=n,v y -builtin Y
+map -modes=n,v Y -builtin y
+
+map -modes=n,v <C-a> -builtin <C-v><C-a>
+map -modes=n,v <C-c> -builtin <C-v><C-c>
+map -modes=n,v <C-v> -builtin <C-v><C-v>
+map -modes=n,v <C-x> -builtin <C-v><C-x>
+map -modes=n,v <C-z> -builtin <C-v><C-z>
+map -modes=i <C-z> -builtin <C-v><C-z>
+map -modes=i <C-v> -builtin <C-v><C-v>
+map -modes=i <C-x> -builtin <C-v><C-x>
+map -modes=i <C-a> -builtin <C-v><C-a>
+map -modes=i <C-c> -builtin <C-v><C-c>
+map -modes=c <C-z> -builtin <C-v><C-z>
+map -modes=c <C-v> -builtin <C-v><C-v>
+map -modes=c <C-x> -builtin <C-v><C-x>
+map -modes=c <C-a> -builtin <C-v><C-a>
+map -modes=c <C-c> -builtin <C-v><C-c>
+
+map i -builtin <C-v>
+map I -builtin <C-z>
+map c -builtin i
+map C -builtin <C-c>

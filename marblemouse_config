@@ -1,0 +1,44 @@
+# Where to put this file?
+# /usr/share/X11/xorg.conf.d/50-marblemouse.conf 
+
+Section "InputClass"
+    Identifier      "Marble Mouse"
+    MatchProduct    "Logitech USB Trackball"
+    MatchIsPointer  "on"
+    MatchDevicePath "/dev/input/event*"
+    Driver          "evdev"
+    Option          "SendCoreEvents" "true"
+
+# ButtonMapping:
+# Each number stands for a operation
+# 1: Left Click
+# 2: Middle Click
+# 3: Right Click
+# 4-7: UNKNOWN
+# 8: Back
+# 9: Forward
+# Each slot stands for a button
+# (For Marble Trackman)
+# 1: Left Big
+# 3: Right Big
+# 4-7: UNAVAILABLE
+# 8: Left Small
+# 9: Right small
+
+    Option "Buttons"            "9"
+
+# Here's setting for right hand users
+    Option "ButtonMapping"      "1 2 8 4 5 6 7 3 9"
+    Option "EmulateWheel"       "true"
+    Option "EmulateWheelButton" "3"
+
+# Here's setting for left hand users
+#    Option "ButtonMapping"      "8 2 1 4 5 6 7 9 3"
+#    Option "EmulateWheel"       "true"
+#    Option "EmulateWheelButton" "1"
+
+    Option "YAxisMapping"       "4 5"
+    Option "XAxisMapping"       "6 7"
+	Option "Emulate3Buttons" 	"true"
+
+EndSection

@@ -1,0 +1,18 @@
+set hlsearch
+map K gT
+map <F11> gT
+map <F1> H
+map J gt
+map <F12> gt
+map <F2> L
+noremap <C-a> <Ins><C-a><Ins>
+map s :open<Space>google<Space>
+map S :tabopen<Space>google<Space>
+nnoremap j 5j
+nnoremap k 5k
+nnoremap h 5h
+nnoremap l 5l
+map , <Space>
+map . <S-Space>
+map + f 
+map * d 
