@@ -1,0 +1,63 @@
+set imap_authenticators="login"
+set timeout=60
+set mail_check=120
+set imap_keepalive=30
+set header_cache="/home/likewise-open/ANT/jiehou/.mutt_header_cache"
+set message_cachedir="/home/likewise-open/ANT/jiehou/.mutt_message_cache"
+set sort=threads
+set sort_aux=last-date-received
+
+set editor=vim
+
+my_hdr From: Jie Hou <jiehou@amazon.com>
+
+# The folder is the root mail folder used when
+# we use "=" in subsequent configuration options.
+# (see below)
+set folder="{exchange.amazon.com/ssl/user=jiehou/novalidate-cert}"
+
+# The spoolfile is where mutt looks for mail
+# first by default.
+# imap mail is in "INBOX" by default (the same
+# as "Inbox" in Outlook
+set spoolfile="{exchange.amazon.com/ssl/user=jiehou/novalidate-cert}INBOX"
+
+# set my username
+set imap_user="jiehou"
+# I should never store my password in plaintext.
+
+# postponed mail goes to the Exchange Drafts folder
+set postponed="=Drafts"
+
+# sent mail goes to the Exchange Sent Items folder
+set record="=Sent Items"
+
+# deleted mail goes to the Exchange Deleted Items folder
+set trash="=Deleted Items"
+
+# define mailboxes (I have exchange rules that file
+# mail from mailing lists into appropriately named
+# folders).  remember that the = means to prepend
+# our "folder" setting from above.
+mailboxes =INBOX
+mailboxes =INBOX/neutrino
+mailboxes =INBOX/cba-dev
+mailboxes =INBOX/chinese-in-sea
+
+# defining these special mailboxes makes it easier to
+# switch to them, but has the disadvantage of making
+# mutt check for new mail in them.
+mailboxes "=Deleted Items"
+mailboxes "=Drafts"
+mailboxes "=Sent Items"
+
+# defining the mailing lists that you are subscribed
+# to allows you to use the 'l' feature to reply only
+# to the list
+subscribe neutrino
+
+auto_view text/html
+auto_view text/calendar
+
+macro index <F1> "y3<return><return>"
+macro index <F2> "y6<return><return>"

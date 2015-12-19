@@ -1,0 +1,119 @@
+#-----------#
+# Passwords #
+#-----------#
+#set my_tmpsecret=`gpg2 -o ~/.sec/.tmp -d ~/.sec/pass.gpg`
+#set my_gpass1=`awk '/Gmail1/ {print $2}' ~/.sec/.tmp`
+#set my_gpass2=`awk '/Gmail2/ {print $2}' ~/.sec/.tmp`
+#set my_del=`rm -f ~/.sec/.tmp`
+
+#---------------#
+# Account Hooks #
+#---------------#
+account-hook . "unset imap_user; unset imap_pass; unset tunnel" # unset first!
+account-hook        "imaps://houjieth@imap.gmail.com/" "\
+    set imap_user   = houjieth@gmail.com \
+        imap_pass   = houjie19861020"
+account-hook        "imaps://j.hou.thu@imap.gmail.com/" "\
+    set imap_user   = j.hou.thu@gmail.com \
+        imap_pass   = houjie19861020"
+account-hook        "imaps://jiehou@umich.edu@imap.gmail.com/" "\
+    set imap_user   = jiehou@umich.edu \
+        imap_pass   = cmaj7&soulcircus"
+account-hook        "imaps://houjieth@imap.163.com/" "\
+    set imap_user   = houjieth@163.com \
+        imap_pass   = houjie19861020"
+
+#-------------------------------------#
+# Folders, mailboxes and folder hooks #
+#-------------------------------------#
+# Setup for user1:
+set folder          = imaps://houjieth@imap.gmail.com/
+mailboxes           = +INBOX =[Gmail]/Drafts =[Gmail]/'Sent Mail' =[Gmail]/Spam =[Gmail]/Trash =owncloud
+set spoolfile       = +INBOX
+folder-hook         imaps://houjieth@imap.gmail.com/ "\
+    set folder      = imaps://houjieth@imap.gmail.com/ \
+        spoolfile   = +INBOX \
+        postponed   = +[Gmail]/Drafts \
+        record      = +[Gmail]/'Sent Mail' \
+        from        = 'Jie Hou<houjieth@gmail.com> ' \
+        realname    = 'Jie Hou' \
+        smtp_url    = smtps://houjieth@smtp.gmail.com \
+        smtp_pass   = houjie19861020"
+
+# Setup for user2:
+set folder          = imaps://j.hou.thu@imap.gmail.com/
+mailboxes           = +INBOX =[Gmail]/Drafts =[Gmail]/'Sent Mail' =[Gmail]/Spam =[Gmail]/Trash
+set spoolfile       = +INBOX
+folder-hook         imaps://j.hou.thu@imap.gmail.com/ "\
+    set folder      = imaps://j.hou.thu@imap.gmail.com/ \
+        spoolfile   = +INBOX \
+        postponed   = +[Gmail]/Drafts \
+        record      = +[Gmail]/'Sent Mail' \
+        from        = 'Jie Hou <j.hou.thu@gmail.com> ' \
+        realname    = 'Jie Hou' \
+        smtp_url    = smtps://j.hou.thu@smtp.gmail.com \
+        smtp_pass   = houjie19861020"
+
+# Setup for user3:
+set folder          = imaps://jiehou@umich.edu@imap.gmail.com/
+mailboxes           = +INBOX
+set spoolfile       = +INBOX
+folder-hook         imaps://jiehou@umich.edu@imap.gmail.com/ "\
+    set folder      = imaps://jiehou@umich.edu@imap.gmail.com/ \
+        spoolfile   = +INBOX \
+        from        = 'Jie Hou <jiehou@umich.edu> ' \
+        realname    = 'Jie Hou'\
+        smtp_url    = smtps://jiehou@umich.edu@smtp.gmail.com \
+        smtp_pass   = cmaj7&soulcircus"
+
+# Setup for user4:
+set folder          = imaps://houjieth@imap.163.com/
+mailboxes           = +INBOX
+set spoolfile       = +INBOX
+folder-hook         imaps://houjieth@imap.163.com/ "\
+    set folder      = imaps://houjieth@imap.163.com/ \
+        spoolfile   = +INBOX \
+        from        = 'Jie Hou <houjieth@163.com> ' \
+        realname    = 'Jie Hou' \
+        smtp_url    = smtps://houjieth@smtp.163.com \
+        smtp_pass   = houjie19861020"
+
+#--------#
+# Macros #
+#--------#
+macro index <F1> "y3<return><return>" 
+macro index <F2> "y9<return><return>" 
+macro index <F3> "y15<return><return>" 
+macro index <F4> "y1<return><return>"  
+
+#-----------------------#
+# Gmail-specific macros #
+#-----------------------#
+# to delete more than 1 message, just mark them with "t" key and then do "d" on them
+macro index d ";s+[Gmail]/Trash<enter><enter>" "Move to Gmail's Trash"
+# delete message, but from pager (opened email)
+macro pager d "s+[Gmail]/Trash<enter><enter>"  "Move to Gmail's Trash"
+# undelete messages
+macro index u ";s+INBOX<enter><enter>"         "Move to Gmail's INBOX"
+macro pager u "s+INBOX<enter><enter>"          "Move to Gmail's INBOX"
+
+#-------------------------#
+# Misc. optional settings #
+#-------------------------#
+# Check for mail every minute for current IMAP mailbox every 1 min
+set timeout         = 60
+# Check for new mail in ALL mailboxes every 2 min
+set mail_check      = 120
+# keep imap connection alive by polling intermittently (time in seconds)
+set imap_keepalive  = 300
+# allow mutt to open new imap connection automatically
+unset imap_passive
+# store message headers locally to speed things up
+# (the ~/.mutt folder MUST exist! Arch does not create it by default)
+set header_cache    = ~/.mutt/hcache
+# sort mail by threads
+set sort            = threads
+# and sort threads by date
+set sort_aux        = last-date-received
+
+auto_view text/html
